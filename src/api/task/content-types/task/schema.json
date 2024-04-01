@@ -1,0 +1,95 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tasks",
+  "info": {
+    "singularName": "task",
+    "pluralName": "tasks",
+    "displayName": "Task",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "string",
+      "required": true,
+      "default": "waiting_to_pick"
+    },
+    "address": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "rejected_reason": {
+      "type": "string"
+    },
+    "expected_note": {
+      "type": "string"
+    },
+    "replace_part": {
+      "type": "string",
+      "required": false
+    },
+    "description": {
+      "type": "text"
+    },
+    "fee": {
+      "type": "biginteger"
+    },
+    "replace_part_cost": {
+      "type": "biginteger"
+    },
+    "total_price": {
+      "type": "biginteger"
+    },
+    "work_hour": {
+      "type": "integer"
+    },
+    "time": {
+      "type": "datetime",
+      "required": false
+    },
+    "customer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "task"
+    },
+    "tasker": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tasker.tasker",
+      "inversedBy": "task"
+    },
+    "review": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::review.review",
+      "mappedBy": "task"
+    },
+    "isNow": {
+      "type": "boolean",
+      "required": false
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true,
+      "required": false
+    }
+  }
+}

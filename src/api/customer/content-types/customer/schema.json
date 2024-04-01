@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "customers",
+  "info": {
+    "singularName": "customer",
+    "pluralName": "customers",
+    "displayName": "Customer",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "customerId": {
+      "type": "uid"
+    },
+    "task": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::task.task",
+      "mappedBy": "customer"
+    },
+    "address": {
+      "type": "string"
+    },
+    "review": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::review.review",
+      "mappedBy": "customer"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "mail": {
+      "type": "email"
+    },
+    "birthDay": {
+      "type": "date"
+    },
+    "avatar": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

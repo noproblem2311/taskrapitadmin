@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "taskers",
+  "info": {
+    "singularName": "tasker",
+    "pluralName": "taskers",
+    "displayName": "Tasker",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "taskerId": {
+      "type": "uid"
+    },
+    "task": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::task.task",
+      "mappedBy": "tasker"
+    },
+    "adress": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "mail": {
+      "type": "string"
+    },
+    "birthDay": {
+      "type": "date"
+    },
+    "avatar": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
