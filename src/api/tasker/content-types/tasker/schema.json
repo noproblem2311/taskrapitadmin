@@ -15,12 +15,6 @@
     "taskerId": {
       "type": "uid"
     },
-    "task": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::task.task",
-      "mappedBy": "tasker"
-    },
     "adress": {
       "type": "string"
     },
@@ -45,6 +39,12 @@
       ],
       "type": "media",
       "multiple": false
+    },
+    "tasks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::task.task",
+      "mappedBy": "tasker"
     }
   }
 }

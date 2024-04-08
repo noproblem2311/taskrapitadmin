@@ -362,190 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiCustomerCustomer extends Schema.CollectionType {
-  collectionName: 'customers';
-  info: {
-    singularName: 'customer';
-    pluralName: 'customers';
-    displayName: 'Customer';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    customerId: Attribute.UID;
-    task: Attribute.Relation<
-      'api::customer.customer',
-      'oneToOne',
-      'api::task.task'
-    >;
-    address: Attribute.String;
-    review: Attribute.Relation<
-      'api::customer.customer',
-      'oneToOne',
-      'api::review.review'
-    >;
-    phone: Attribute.String;
-    username: Attribute.String;
-    mail: Attribute.Email;
-    birthDay: Attribute.Date;
-    avatar: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::customer.customer',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::customer.customer',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiReviewReview extends Schema.CollectionType {
-  collectionName: 'reviews';
-  info: {
-    singularName: 'review';
-    pluralName: 'reviews';
-    displayName: 'Review';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    customer: Attribute.Relation<
-      'api::review.review',
-      'oneToOne',
-      'api::customer.customer'
-    >;
-    task: Attribute.Relation<
-      'api::review.review',
-      'oneToOne',
-      'api::task.task'
-    >;
-    rate: Attribute.Integer;
-    content: Attribute.Text;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::review.review',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::review.review',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiTaskTask extends Schema.CollectionType {
-  collectionName: 'tasks';
-  info: {
-    singularName: 'task';
-    pluralName: 'tasks';
-    displayName: 'Task';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    status: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'waiting_to_pick'>;
-    address: Attribute.String & Attribute.Required;
-    phone: Attribute.String & Attribute.Required;
-    rejected_reason: Attribute.String;
-    expected_note: Attribute.String;
-    replace_part: Attribute.String;
-    description: Attribute.Text;
-    fee: Attribute.BigInteger;
-    replace_part_cost: Attribute.BigInteger;
-    total_price: Attribute.BigInteger;
-    work_hour: Attribute.Integer;
-    time: Attribute.DateTime;
-    customer: Attribute.Relation<
-      'api::task.task',
-      'oneToOne',
-      'api::customer.customer'
-    >;
-    tasker: Attribute.Relation<
-      'api::task.task',
-      'oneToOne',
-      'api::tasker.tasker'
-    >;
-    review: Attribute.Relation<
-      'api::task.task',
-      'oneToOne',
-      'api::review.review'
-    >;
-    isNow: Attribute.Boolean;
-    image: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::task.task', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::task.task', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiTaskerTasker extends Schema.CollectionType {
-  collectionName: 'taskers';
-  info: {
-    singularName: 'tasker';
-    pluralName: 'taskers';
-    displayName: 'Tasker';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    taskerId: Attribute.UID;
-    task: Attribute.Relation<
-      'api::tasker.tasker',
-      'oneToOne',
-      'api::task.task'
-    >;
-    adress: Attribute.String;
-    phone: Attribute.String;
-    username: Attribute.String;
-    mail: Attribute.String;
-    birthDay: Attribute.Date;
-    avatar: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::tasker.tasker',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::tasker.tasker',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -953,6 +769,221 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiCustomerCustomer extends Schema.CollectionType {
+  collectionName: 'customers';
+  info: {
+    singularName: 'customer';
+    pluralName: 'customers';
+    displayName: 'Customer';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    customerId: Attribute.UID;
+    address: Attribute.String;
+    phone: Attribute.String;
+    username: Attribute.String;
+    mail: Attribute.Email;
+    birthDay: Attribute.Date;
+    avatar: Attribute.Media;
+    tasks: Attribute.Relation<
+      'api::customer.customer',
+      'oneToMany',
+      'api::task.task'
+    >;
+    reviews: Attribute.Relation<
+      'api::customer.customer',
+      'oneToMany',
+      'api::review.review'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::customer.customer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::customer.customer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiReviewReview extends Schema.CollectionType {
+  collectionName: 'reviews';
+  info: {
+    singularName: 'review';
+    pluralName: 'reviews';
+    displayName: 'Review';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    customer: Attribute.Relation<
+      'api::review.review',
+      'manyToOne',
+      'api::customer.customer'
+    >;
+    task: Attribute.Relation<
+      'api::review.review',
+      'manyToOne',
+      'api::task.task'
+    >;
+    rate: Attribute.Integer;
+    content: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiServiceService extends Schema.CollectionType {
+  collectionName: 'services';
+  info: {
+    singularName: 'service';
+    pluralName: 'services';
+    displayName: 'Service';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::service.service',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::service.service',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTaskTask extends Schema.CollectionType {
+  collectionName: 'tasks';
+  info: {
+    singularName: 'task';
+    pluralName: 'tasks';
+    displayName: 'Task';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    status: Attribute.String &
+      Attribute.Required &
+      Attribute.DefaultTo<'waiting_to_pick'>;
+    address: Attribute.String & Attribute.Required;
+    phone: Attribute.String & Attribute.Required;
+    rejected_reason: Attribute.String;
+    expected_note: Attribute.String;
+    replace_part: Attribute.String;
+    description: Attribute.Text;
+    fee: Attribute.BigInteger;
+    replace_part_cost: Attribute.BigInteger;
+    total_price: Attribute.BigInteger;
+    work_hour: Attribute.Integer;
+    time: Attribute.DateTime;
+    customer: Attribute.Relation<
+      'api::task.task',
+      'manyToOne',
+      'api::customer.customer'
+    >;
+    tasker: Attribute.Relation<
+      'api::task.task',
+      'manyToOne',
+      'api::tasker.tasker'
+    >;
+    isNow: Attribute.Boolean;
+    image: Attribute.Media;
+    reviews: Attribute.Relation<
+      'api::task.task',
+      'oneToMany',
+      'api::review.review'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::task.task', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::task.task', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTaskerTasker extends Schema.CollectionType {
+  collectionName: 'taskers';
+  info: {
+    singularName: 'tasker';
+    pluralName: 'taskers';
+    displayName: 'Tasker';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    taskerId: Attribute.UID;
+    adress: Attribute.String;
+    phone: Attribute.String;
+    username: Attribute.String;
+    mail: Attribute.String;
+    birthDay: Attribute.Date;
+    avatar: Attribute.Media;
+    tasks: Attribute.Relation<
+      'api::tasker.tasker',
+      'oneToMany',
+      'api::task.task'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tasker.tasker',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tasker.tasker',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -963,10 +994,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::customer.customer': ApiCustomerCustomer;
-      'api::review.review': ApiReviewReview;
-      'api::task.task': ApiTaskTask;
-      'api::tasker.tasker': ApiTaskerTasker;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -975,6 +1002,11 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::customer.customer': ApiCustomerCustomer;
+      'api::review.review': ApiReviewReview;
+      'api::service.service': ApiServiceService;
+      'api::task.task': ApiTaskTask;
+      'api::tasker.tasker': ApiTaskerTasker;
     }
   }
 }

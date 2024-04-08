@@ -15,20 +15,8 @@
     "customerId": {
       "type": "uid"
     },
-    "task": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::task.task",
-      "mappedBy": "customer"
-    },
     "address": {
       "type": "string"
-    },
-    "review": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::review.review",
-      "mappedBy": "customer"
     },
     "phone": {
       "type": "string"
@@ -51,6 +39,18 @@
       ],
       "type": "media",
       "multiple": false
+    },
+    "tasks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::task.task",
+      "mappedBy": "customer"
+    },
+    "reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::review.review",
+      "mappedBy": "customer"
     }
   }
 }

@@ -60,36 +60,36 @@
     },
     "customer": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::customer.customer",
-      "inversedBy": "task"
+      "inversedBy": "tasks"
     },
     "tasker": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::tasker.tasker",
-      "inversedBy": "task"
-    },
-    "review": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::review.review",
-      "mappedBy": "task"
+      "inversedBy": "tasks"
     },
     "isNow": {
       "type": "boolean",
       "required": false
     },
     "image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true,
-      "required": false
+      ]
+    },
+    "reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::review.review",
+      "mappedBy": "task"
     }
   }
 }

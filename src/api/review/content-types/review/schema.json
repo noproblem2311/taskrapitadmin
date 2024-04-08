@@ -4,7 +4,8 @@
   "info": {
     "singularName": "review",
     "pluralName": "reviews",
-    "displayName": "Review"
+    "displayName": "Review",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,15 +14,15 @@
   "attributes": {
     "customer": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::customer.customer",
-      "inversedBy": "review"
+      "inversedBy": "reviews"
     },
     "task": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::task.task",
-      "inversedBy": "review"
+      "inversedBy": "reviews"
     },
     "rate": {
       "type": "integer"
