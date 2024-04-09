@@ -24,22 +24,6 @@
     "username": {
       "type": "string"
     },
-    "mail": {
-      "type": "email"
-    },
-    "birthDay": {
-      "type": "date"
-    },
-    "avatar": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false
-    },
     "tasks": {
       "type": "relation",
       "relation": "oneToMany",
@@ -50,6 +34,24 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::review.review",
+      "mappedBy": "customer"
+    },
+    "avatar": {
+      "type": "string"
+    },
+    "birthDay": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "string"
+    },
+    "mail": {
+      "type": "email"
+    },
+    "addresses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::address.address",
       "mappedBy": "customer"
     }
   }

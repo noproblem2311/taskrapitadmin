@@ -15,7 +15,7 @@
     "taskerId": {
       "type": "uid"
     },
-    "adress": {
+    "address": {
       "type": "string"
     },
     "phone": {
@@ -24,27 +24,23 @@
     "username": {
       "type": "string"
     },
-    "mail": {
-      "type": "string"
-    },
-    "birthDay": {
-      "type": "date"
-    },
-    "avatar": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false
-    },
     "tasks": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::task.task",
       "mappedBy": "tasker"
+    },
+    "avatar": {
+      "type": "string"
+    },
+    "birthDay": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "string"
+    },
+    "mail": {
+      "type": "email"
     }
   }
 }

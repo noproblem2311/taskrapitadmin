@@ -769,6 +769,45 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAddressAddress extends Schema.CollectionType {
+  collectionName: 'addresses';
+  info: {
+    singularName: 'address';
+    pluralName: 'addresses';
+    displayName: 'address';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    province: Attribute.String;
+    ward: Attribute.String;
+    district: Attribute.String;
+    name: Attribute.String;
+    customer: Attribute.Relation<
+      'api::address.address',
+      'manyToOne',
+      'api::customer.customer'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::address.address',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::address.address',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCustomerCustomer extends Schema.CollectionType {
   collectionName: 'customers';
   info: {
@@ -785,9 +824,6 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
     address: Attribute.String;
     phone: Attribute.String;
     username: Attribute.String;
-    mail: Attribute.Email;
-    birthDay: Attribute.Date;
-    avatar: Attribute.Media;
     tasks: Attribute.Relation<
       'api::customer.customer',
       'oneToMany',
@@ -797,6 +833,15 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
       'api::customer.customer',
       'oneToMany',
       'api::review.review'
+    >;
+    avatar: Attribute.String;
+    birthDay: Attribute.String;
+    gender: Attribute.String;
+    mail: Attribute.Email;
+    addresses: Attribute.Relation<
+      'api::customer.customer',
+      'oneToMany',
+      'api::address.address'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -955,17 +1000,18 @@ export interface ApiTaskerTasker extends Schema.CollectionType {
   };
   attributes: {
     taskerId: Attribute.UID;
-    adress: Attribute.String;
+    address: Attribute.String;
     phone: Attribute.String;
     username: Attribute.String;
-    mail: Attribute.String;
-    birthDay: Attribute.Date;
-    avatar: Attribute.Media;
     tasks: Attribute.Relation<
       'api::tasker.tasker',
       'oneToMany',
       'api::task.task'
     >;
+    avatar: Attribute.String;
+    birthDay: Attribute.String;
+    gender: Attribute.String;
+    mail: Attribute.Email;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1002,6 +1048,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::address.address': ApiAddressAddress;
       'api::customer.customer': ApiCustomerCustomer;
       'api::review.review': ApiReviewReview;
       'api::service.service': ApiServiceService;
