@@ -971,12 +971,12 @@ export interface ApiTaskTask extends Schema.CollectionType {
       'api::tasker.tasker'
     >;
     isNow: Attribute.Boolean;
-    image: Attribute.Media;
     reviews: Attribute.Relation<
       'api::task.task',
       'oneToMany',
       'api::review.review'
     >;
+    media: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

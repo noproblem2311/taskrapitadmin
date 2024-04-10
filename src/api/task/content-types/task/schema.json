@@ -74,22 +74,14 @@
       "type": "boolean",
       "required": false
     },
-    "image": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
     "reviews": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::review.review",
       "mappedBy": "task"
+    },
+    "media": {
+      "type": "json"
     }
   }
 }
