@@ -948,7 +948,7 @@ export interface ApiTaskTask extends Schema.CollectionType {
     name: Attribute.String & Attribute.Required;
     status: Attribute.String &
       Attribute.Required &
-      Attribute.DefaultTo<'waiting_to_pick'>;
+      Attribute.DefaultTo<'sended'>;
     address: Attribute.String & Attribute.Required;
     phone: Attribute.String & Attribute.Required;
     rejected_reason: Attribute.String;

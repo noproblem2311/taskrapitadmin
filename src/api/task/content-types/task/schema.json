@@ -19,7 +19,7 @@
     "status": {
       "type": "string",
       "required": true,
-      "default": "waiting_to_pick"
+      "default": "sended"
     },
     "address": {
       "type": "string",

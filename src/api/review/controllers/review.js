@@ -12,7 +12,7 @@ module.exports = createCoreController('api::review.review',({ strapi }) => ({
         const { id } = ctx.params;
   
         let entity;
-        if (1 === 1) {
+       
           // Lấy danh sách task của customer
           entity = await strapi.service('api::review.review').find({
             filters: { task: id },
@@ -20,9 +20,7 @@ module.exports = createCoreController('api::review.review',({ strapi }) => ({
             sort: { createdAt: 'desc' }, // Sắp xếp theo thời gian tạo mới nhất
             pagination: { start: 0, limit: -1 }, // Lấy tất cả các bản ghi
           });
-        } else {
-          return ctx.badRequest('Invalid type');
-        }
+       
   
         ctx.body = entity;
       } catch (err) {
