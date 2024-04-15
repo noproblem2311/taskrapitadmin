@@ -11,7 +11,8 @@ module.exports = createCoreController('api::task.task', ({ strapi }) => ({
         // Lấy danh sách task của customer
         entity = await strapi.service('api::task.task').find({
           filters: { customer: id },
-          populate: ['customer', 'tasker', 'review'],
+          populate: ['customer', 'tasker', 'review', 'address'],
+
           sort: { createdAt: 'desc' }, // Sắp xếp theo thời gian tạo mới nhất
           pagination: { start: 0, limit: -1 }, // Lấy tất cả các bản ghi
         });
@@ -19,7 +20,8 @@ module.exports = createCoreController('api::task.task', ({ strapi }) => ({
         // Lấy danh sách task của tasker
         entity = await strapi.service('api::task.task').find({
           filters: { tasker: id },
-          populate: ['customer', 'tasker', 'review'],
+          populate: ['customer', 'tasker', 'review', 'address'],
+
           sort: { createdAt: 'desc' },
           pagination: { start: 0, limit: -1 },
         });
