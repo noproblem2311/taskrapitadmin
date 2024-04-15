@@ -30,11 +30,11 @@
       "target": "api::customer.customer",
       "inversedBy": "addresses"
     },
-    "task": {
+    "tasks": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::task.task",
-      "inversedBy": "address"
+      "mappedBy": "address"
     }
   }
 }

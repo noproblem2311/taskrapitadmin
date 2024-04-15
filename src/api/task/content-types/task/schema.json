@@ -81,9 +81,9 @@
     },
     "address": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::address.address",
-      "inversedBy": "task"
+      "inversedBy": "tasks"
     }
   }
 }

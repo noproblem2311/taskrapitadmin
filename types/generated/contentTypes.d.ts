@@ -790,9 +790,9 @@ export interface ApiAddressAddress extends Schema.CollectionType {
       'manyToOne',
       'api::customer.customer'
     >;
-    task: Attribute.Relation<
+    tasks: Attribute.Relation<
       'api::address.address',
-      'oneToOne',
+      'oneToMany',
       'api::task.task'
     >;
     createdAt: Attribute.DateTime;
@@ -983,7 +983,7 @@ export interface ApiTaskTask extends Schema.CollectionType {
     media: Attribute.JSON;
     address: Attribute.Relation<
       'api::task.task',
-      'oneToOne',
+      'manyToOne',
       'api::address.address'
     >;
     createdAt: Attribute.DateTime;
