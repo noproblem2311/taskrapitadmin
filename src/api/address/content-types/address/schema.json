@@ -29,6 +29,12 @@
       "relation": "manyToOne",
       "target": "api::customer.customer",
       "inversedBy": "addresses"
+    },
+    "task": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::task.task",
+      "inversedBy": "address"
     }
   }
 }

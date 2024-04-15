@@ -790,6 +790,11 @@ export interface ApiAddressAddress extends Schema.CollectionType {
       'manyToOne',
       'api::customer.customer'
     >;
+    task: Attribute.Relation<
+      'api::address.address',
+      'oneToOne',
+      'api::task.task'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -949,7 +954,6 @@ export interface ApiTaskTask extends Schema.CollectionType {
     status: Attribute.String &
       Attribute.Required &
       Attribute.DefaultTo<'sended'>;
-    address: Attribute.String & Attribute.Required;
     phone: Attribute.String & Attribute.Required;
     rejected_reason: Attribute.String;
     expected_note: Attribute.String;
@@ -977,6 +981,11 @@ export interface ApiTaskTask extends Schema.CollectionType {
       'api::review.review'
     >;
     media: Attribute.JSON;
+    address: Attribute.Relation<
+      'api::task.task',
+      'oneToOne',
+      'api::address.address'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
